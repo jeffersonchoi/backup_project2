@@ -1,0 +1,20 @@
+<h1><%= @user.first_name %>'s <%= @item.item_name %></h1>
+
+<table>
+	<tr>
+    <th> Item ID </th>
+		<th> Item Name </th>
+		<th> Stock Quantity </th>
+		<th> Marked_Price </th>
+		<th> Posted Time </th>
+	</tr>
+		<tr>
+      <td> <%= @item.id %> </td>
+			<td> <%= @item.item_name %> </td>
+			<td> <%= @item.stock_quantity %> </td>
+			<td> <%= @item.marked_price %> </td>
+      <td> <%= time_ago_in_words (@item.created_at) %> ago.</td>
+		</tr>
+</table>
+
+<%= link_to "Back to #{@user.first_name}'s Item Lists", user_items_path %>

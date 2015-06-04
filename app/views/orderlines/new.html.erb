@@ -1,0 +1,22 @@
+<h1>Add new orderline!</h1>
+
+<%= form_for ([@order, @order.orderlines.build]) do |f| %>
+    <div>
+      Order ID = <%= @order.id %>
+    </div>
+
+
+    <div>
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity %>
+    </div>
+
+    <div>
+        <%= f.label :selling_price %>
+        <%= f.number_field :selling_price %>
+    </div>
+
+
+    <%= f.submit "Submit!" %>
+
+<% end %>

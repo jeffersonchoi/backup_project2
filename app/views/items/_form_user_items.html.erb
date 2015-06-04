@@ -1,0 +1,28 @@
+<h1><%= @user.first_name %>'s items list</h1>
+
+<table>
+	<tr>
+    <th> Item ID </th>
+		<th> Item Name </th>
+		<th> Stock Quantity </th>
+		<th> Marked_Price </th>
+		<th> Posted Time </th>
+		<% if current_user.id == @user.id %>
+			<th> Edit details? <th>
+		<% end %>
+	</tr>
+  <% @user.items.each do |user| %>
+		<tr>
+      <td> <%= user.id %> </td>
+			<td> <%= user.item_name %> </td>
+			<td> <%= user.stock_quantity %> </td>
+			<td> <%= user.marked_price %> </td>
+      <td> <%= time_ago_in_words (user.created_at) %> ago.</td>
+				<% if current_user.id == @user.id %>
+				<td> <%= link_to "Edit Items", edit_user_item_path(:current_user_id, user.id)%></td>
+				<% end %>
+			<% end %>
+
+		</tr>
+</table>
+<%= link_to "Back to #{@user.first_name}'s profile", user_path %>

@@ -1,4 +1,4 @@
 class Item < ActiveRecord::Base
   belongs_to :user
-  has_many :orderlines, through: :orderlines
+  has_many :orderlines
 end

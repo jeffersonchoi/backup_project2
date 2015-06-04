@@ -8,7 +8,9 @@
 		<th> Marked_Price </th>
 		<th> Posted Time </th>
 		<% if current_user.id == @user.id %>
-			<th> Edit details? <th>
+			<th> Edit details? </th>
+		<% else %>
+			<th> Interested? </th>
 		<% end %>
 	</tr>
   <% @user.items.each do |user| %>
@@ -20,6 +22,8 @@
       <td> <%= time_ago_in_words (user.created_at) %> ago.</td>
 				<% if current_user.id == @user.id %>
 				<td> <%= link_to "Edit Items", edit_user_item_path(:current_user_id, user.id)%></td>
+				<% else %>
+				<td> <%= link_to "Add to Cart", new_order_path %>
 				<% end %>
 			<% end %>
 

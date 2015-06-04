@@ -11,19 +11,24 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @user = User.find(current_user.id)
+    @order = User.order.find(:id)
     @order = Order.new
+		@orderline = Orderline.new
   end
 
   def create
-		 @order = Order.new(params.require(:order).permit(:created_at, :updated_at))
-     @order.user_id = current_user.id
+    @user = User.find(current_user.id)
+    @order = User.order.find(:id)
+    @orderline = Orderline.new(orderline_params)
 
-		if @order.save
-		  redirect_to user_path
-		else
-		  render :new
-		end
-	end
+     if @orderline.save
+       @order.user_id = current_user.id
+       redirect_to user_path(current_user)
+     else
+       render :new
+     end
+  end
 
   private
   	def order_params
